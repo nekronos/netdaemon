@@ -36,8 +36,9 @@ internal static class SerilogConfigurator
 
     private static LoggingConfiguration GetLoggingConfiguration(IHostEnvironment hostingEnvironment)
     {
+
         var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(hostingEnvironment.ContentRootPath)
             .AddJsonFile("appsettings.json")
             .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", true)
             .AddEnvironmentVariables()
